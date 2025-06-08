@@ -28,11 +28,7 @@ public class Map {
     public bool IsWalkable(Point p) {
         return IsWalkable(p.X, p.Y);
     }
-
-    /// <summary>
-    ///     检查一个区域是完全可通行、完全不可通行，还是混合的。
-    /// </summary>
-    /// <returns>true: 完全可通行; false: 完全不可通行; null: 混合.</returns>
+    
     public bool? IsRegionUniform(Bounds bounds) {
         int obstacleSum = GetObstacleSumInBounds(bounds);
         if (obstacleSum == 0) return true; // All walkable
@@ -69,8 +65,7 @@ public class Map {
 
         _data[index] = newValue;
         int diff = newValue - oldValue;
-
-        // Efficiently update the Summed-Area Table
+        
         for (int y = p.Y; y < Height; y++)
         for (int x = p.X; x < Width; x++)
             _summedAreaTable[y * Width + x] += diff;

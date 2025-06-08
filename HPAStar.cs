@@ -1,11 +1,8 @@
-//HPAStar.cs
-
 using System.Collections.Concurrent;
 using System.Diagnostics;
 
 namespace QuadTreeHPAStar;
 
-// Records are fine
 public record HighLevelEdge(int NeighborId, int Cost, List<Point>? Path = null);
 
 public record CameFromLink(int FromId, List<Point>? Path); // Path is the segment leading TO current node FROM FromId

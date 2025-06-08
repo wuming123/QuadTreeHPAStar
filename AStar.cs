@@ -1,5 +1,3 @@
-//AStar.cs
-
 using System.Buffers;
 
 namespace QuadTreeHPAStar;

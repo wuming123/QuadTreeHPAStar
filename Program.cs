@@ -58,33 +58,25 @@ public class PathfindingBenchmarks {
 
 public static class Program {
     public static void Main(string[] args) {
-        // 运行基准测试
         var summary = BenchmarkRunner.Run<PathfindingBenchmarks>();
-        // test();
+        test();
     }
 
     private static void test() {
         InitMap();
-        // 1. Create Map
         byte[,] grid = InitMap();
-
-        // Ensure start and end are walkable
         var start = new Point(3, 3);
         var end = new Point(1023, 1023);
         grid[start.Y, start.X] = 0;
         grid[end.Y, end.X] = 0;
 
         var map = new Map(grid);
-
-        // 2. HPA* Precomputation
         Console.WriteLine("--- HPA* Precomputation ---");
         var hpaStar = new HPAStar(map, 16, 64);
         var precomputeWatch = Stopwatch.StartNew();
         hpaStar.Precompute();
         precomputeWatch.Stop();
         Console.WriteLine($"Total Precomputation Time: {precomputeWatch.Elapsed.TotalMilliseconds:F3} ms");
-
-        // 3. Run HPA* Search
         Console.WriteLine("\n\n--- Running HPA* Search ---");
         var hpaWatch = Stopwatch.StartNew();
         List<Point>? hpaPath = hpaStar.FindPath(start, end);
@@ -94,8 +86,6 @@ public static class Program {
             Console.WriteLine($"Path found with {hpaPath.Count} steps.");
         else
             Console.WriteLine("No path found by HPA*.");
-
-        // 4. Run Standard A* for comparison
         Console.WriteLine("\n\n--- Running Standard A* Search (for comparison) ---");
         var aStarWatch = Stopwatch.StartNew();
         List<Point>? standardAPath = AStar.FindPath(map, start, end);

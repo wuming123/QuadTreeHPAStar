@@ -1,5 +1,3 @@
-// QuadtreeNode.cs
-
 namespace QuadTreeHPAStar;
 
 public class QuadtreeNode {
@@ -220,5 +218,3 @@ public class QuadtreeNode {
         W
     }
 }
-
-// Add this helper extension to Bounds record for convenience
