@@ -26,7 +26,6 @@ public class PathfindingBenchmarks {
 
     [Benchmark]
     public List<Point>? HPAStar_FindPath() {
-        // 确保预处理已完成
         if (_hpaStar == null) {
             _hpaStar = new HPAStar(_map, 4, 64);
             _hpaStar.Precompute();
@@ -41,7 +40,7 @@ public class PathfindingBenchmarks {
     }
 
     private static byte[,] InitMap() {
-        string[] data = File.ReadAllLines("C:/Users/54936/Desktop/Project/ai/maze.txt", Encoding.UTF8);
+        string[] data = File.ReadAllLines("./maze.txt", Encoding.UTF8);
         byte[,] grid = new byte[data.Length, data.Length];
         for (int i = 0; i < data.Length; i++) {
             char[] str = data[i].ToCharArray();
